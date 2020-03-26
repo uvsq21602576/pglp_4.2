@@ -1,4 +1,4 @@
-package fr.uvsq.uvsq21602576.pglp_4_2;
+package fr.uvsq.uvsq21602576.pglp_4_2.commandes;
 
 public class CommandeExit implements Commande {
 
@@ -6,8 +6,9 @@ public class CommandeExit implements Commande {
         
     }
 
-    public void execute() {
+    public boolean execute() {
         System.out.println("Exit");
+        return false;
     }
 
 }
