@@ -10,11 +10,13 @@ import java.util.HashMap;
 public class Interpreteur {
     private final HashMap<String, Commande> commandes;
 
-	private Interpreteur() {
+	public Interpreteur() {
 	    commandes = new HashMap<String, Commande>();
+        this.enregistre("undo", new CommandeUndo());
+        this.enregistre("exit", new CommandeExit());
 	}
 
-	private void enregistre(String nom, Commande c) {
+	protected void enregistre(String nom, Commande c) {
 	    commandes.put(nom, c);
 	}
 	
@@ -24,12 +26,5 @@ public class Interpreteur {
 	    } else {
 	        System.err.println("No entry for "+nomCommande);
 	    }
-	}
-	
-	public static Interpreteur init() {
-	    Interpreteur i = new Interpreteur();
-	    i.enregistre("undo", new CommandeUndo());
-	    i.enregistre("exit", new CommandeExit());
-	    return i;
 	}
 }

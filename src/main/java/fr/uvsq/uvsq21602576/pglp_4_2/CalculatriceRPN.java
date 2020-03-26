@@ -4,12 +4,14 @@ public enum CalculatriceRPN {
     MAIN;
 
     public void run() {
-        Interpreteur i = Interpreteur.init();
+        /*Interpreteur i = new Interpreteur();
         i.execute("undo");
-        i.execute("exit");
+        i.execute("exit");*/
+        SaisieRPN s = new SaisieRPN();
+        s.lanceSaisie();
     }
 
-    public static void main() {
+    public static void main(String args[]) {
         MAIN.run();
     }
 }
