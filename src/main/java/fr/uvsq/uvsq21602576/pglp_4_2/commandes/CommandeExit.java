@@ -8,7 +8,7 @@ public class CommandeExit implements Commande {
 
     public boolean execute() {
         System.out.println("Exit");
-        return false;
+        return true;
     }
 
 }

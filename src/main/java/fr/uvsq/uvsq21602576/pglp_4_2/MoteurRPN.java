@@ -3,7 +3,7 @@ package fr.uvsq.uvsq21602576.pglp_4_2;
 import java.util.Stack;
 
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.Commande;
-import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAffiche;
+import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAfficheMoteur;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAjoutOperande;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeOperation;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbstenteException;
@@ -14,7 +14,7 @@ public class MoteurRPN extends Interpreteur {
     public MoteurRPN(){
         super();
         operandes = new Stack<Double>();
-        Commande affiche = new CommandeAffiche(this);
+        Commande affiche = new CommandeAfficheMoteur(this);
         super.enregistre("affiche", affiche);
     }
 
@@ -45,9 +45,18 @@ public class MoteurRPN extends Interpreteur {
         super.execute("affiche");
     }
     
-    @Override
-    public String toString() {
+    public String afficheOperandes() {
         return this.operandes.toString();
+    }
+    
+    public String afficheCommandes() {
+        String s = super.afficheCommandes();
+        s = s.substring(0, s.length()-1);
+        s = s.concat(",\n\t");
+        String operateurs = Operation.afficheOperateurs();
+        s = s.concat(operateurs.substring(1, operateurs.length() - 1));
+        s = s.concat(",\n\tpour ajouter une opérande : écrivez-la simplement]");
+        return s;
     }
     
 }

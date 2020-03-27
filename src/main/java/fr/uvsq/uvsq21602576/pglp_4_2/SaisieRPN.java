@@ -48,7 +48,7 @@ public class SaisieRPN {
         } else {
             return moteur.execute(str);
         }
-        return true;
+        return false;
     }
     
     public void lanceSaisie() {
@@ -58,10 +58,10 @@ public class SaisieRPN {
                 + "par mots de l'opération, ou \"undo\" pour revenir "
                 + "en arrière ou \"exit\" pour quitter :");
         String str = "";
-        boolean enMarche = true;
-        while(enMarche) {
+        boolean arret = false;
+        while(!arret) {
             str = sc.nextLine();
-            enMarche = interprete(str);
+            arret = interprete(str);
         }
         sc.close();
     }

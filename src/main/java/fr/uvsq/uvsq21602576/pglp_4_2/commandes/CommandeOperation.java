@@ -38,7 +38,7 @@ public class CommandeOperation implements CommandeUndoable {
             this.moteur.enregistreOperande(b);
             throw new CommandeImpossibleException(e.getMessage());
         }
-        return true;
+        return false;
     }
 
     public void undo() throws UndoImpossibleException {

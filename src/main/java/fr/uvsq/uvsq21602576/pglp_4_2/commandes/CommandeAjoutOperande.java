@@ -15,7 +15,7 @@ public class CommandeAjoutOperande implements CommandeUndoable {
     
     public boolean execute() {
         moteur.enregistreOperande(operande);
-        return true;
+        return false;
     }
 
     public void undo() throws UndoImpossibleException {

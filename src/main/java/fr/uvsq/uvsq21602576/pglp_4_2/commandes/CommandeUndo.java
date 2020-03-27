@@ -21,7 +21,7 @@ public class CommandeUndo implements Commande {
         } catch (UndoImpossibleException e) {
             System.err.println(e.getMessage());
         }
-        return true;
+        return false;
     }
 
 }

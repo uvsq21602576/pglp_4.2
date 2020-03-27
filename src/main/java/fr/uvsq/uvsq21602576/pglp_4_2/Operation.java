@@ -84,4 +84,15 @@ public enum Operation {
         }
         return false;
     }
+	
+	public static String afficheOperateurs() {
+	    Operation o[] = Operation.values();
+	    String s = "[";
+        for (int i = 0; i < o.length; i++) {
+            s = s.concat(o[i].symbole + ", ");
+        }
+        s = s.substring(0, s.length() - 2);
+        s = s.concat("]");
+        return s;
+	}
 }
