@@ -2,6 +2,10 @@ package fr.uvsq.uvsq21602576.pglp_4_2;
 
 import java.util.Scanner;
 
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.NoCommandException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
+
 public class SaisieRPN {
 
     private MoteurRPN moteur;
@@ -42,11 +46,23 @@ public class SaisieRPN {
     
     private boolean interprete(String str) {
         if(isDouble(str)) {
-            moteur.executeAjoutOperande(Double.parseDouble(str));
+            try {
+                moteur.executeAjoutOperande(Double.parseDouble(str));
+            } catch (NumberFormatException | CommandeImpossibleException | NoCommandException | UndoImpossibleException e) {
+                System.err.println(e.getMessage());
+            }
         } else if (Operation.isOperateur(str)) {
-            moteur.executeOperation(Operation.getOperation(str.charAt(0)));
+            try {
+                moteur.executeOperation(Operation.getOperation(str.charAt(0)));
+            } catch (CommandeImpossibleException | NoCommandException | UndoImpossibleException e) {
+                System.err.println(e.getMessage());
+            }
         } else {
-            return moteur.execute(str);
+            try {
+                return moteur.execute(str);
+            } catch (NoCommandException | CommandeImpossibleException | UndoImpossibleException e) {
+                System.err.println(e.getMessage());
+            }
         }
         return false;
     }

@@ -6,7 +6,10 @@ import fr.uvsq.uvsq21602576.pglp_4_2.commandes.Commande;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAfficheMoteur;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAjoutOperande;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeOperation;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.NoCommandException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbstenteException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
 public class MoteurRPN extends Interpreteur {
     private Stack<Double> operandes;
@@ -33,13 +36,13 @@ public class MoteurRPN extends Interpreteur {
         return operandes.pop();
     }
     
-    public void executeAjoutOperande(double o) {
+    public void executeAjoutOperande(double o) throws CommandeImpossibleException, NoCommandException, UndoImpossibleException {
         Commande c = new CommandeAjoutOperande(this, o);
         super.execute(c);
         super.execute("affiche");
     }
     
-    public void executeOperation(Operation ope) {
+    public void executeOperation(Operation ope) throws CommandeImpossibleException, NoCommandException, UndoImpossibleException {
         Commande c = new CommandeOperation(this, ope);
         super.execute(c);
         super.execute("affiche");

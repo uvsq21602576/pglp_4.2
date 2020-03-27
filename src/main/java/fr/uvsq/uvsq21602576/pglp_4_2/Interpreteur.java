@@ -1,6 +1,9 @@
 package fr.uvsq.uvsq21602576.pglp_4_2;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.Commande;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAfficheCommande;
@@ -8,6 +11,8 @@ import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeExit;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeUndo;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeUndoable;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.NoCommandException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
 /**
  * Interpréteur.
@@ -30,27 +35,25 @@ public class Interpreteur {
         commandes.put(nom, c);
     }
 
-    public Boolean execute(String nomCommande) {
+    public Boolean execute(String nomCommande) throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
         if (this.commandes.containsKey(nomCommande)) {
             Commande c = this.commandes.get(nomCommande);
             return this.execute(c);
         } else {
-            System.err.println("No entry for \""+nomCommande+"\"");
+            throw new NoCommandException(nomCommande);
         }
-        return false;
     }
 
-    public boolean execute(Commande c) {
-        try {
-            boolean arret = c.execute();
-            if (c instanceof CommandeUndoable) {
-                historique.ajoute((CommandeUndoable) c);
-            }
-            return arret;
-        } catch (CommandeImpossibleException e) {
-            System.err.println(e.getMessage());
+    public boolean execute(Commande c) throws CommandeImpossibleException, UndoImpossibleException {
+        boolean arret = c.execute();
+        if (c instanceof CommandeUndoable) {
+            historique.ajoute((CommandeUndoable) c);
         }
-        return false;
+        return arret;
+    }
+
+    public List<String> keySet() {
+        return Collections.unmodifiableList(new ArrayList<String>(commandes.keySet()));
     }
 
     public String afficheCommandes() {
