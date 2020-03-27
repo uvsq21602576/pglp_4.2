@@ -18,7 +18,7 @@ public class CommandeOperation implements CommandeUndoable {
         this.operation = ope;
     }
 
-    public boolean execute() throws CommandeImpossibleException {
+    public void execute() throws CommandeImpossibleException {
         try {
             b = this.moteur.retireOperande();
         } catch (OperandeAbstenteException e1) {
@@ -38,7 +38,6 @@ public class CommandeOperation implements CommandeUndoable {
             this.moteur.enregistreOperande(b);
             throw new CommandeImpossibleException(e.getMessage());
         }
-        return false;
     }
 
     public void undo() throws UndoImpossibleException {

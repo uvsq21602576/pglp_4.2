@@ -14,8 +14,8 @@ import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 public class MoteurRPN extends Interpreteur {
     private Stack<Double> operandes;
 
-    public MoteurRPN(){
-        super();
+    public MoteurRPN(Arret arret){
+        super(arret);
         operandes = new Stack<Double>();
         Commande affiche = new CommandeAfficheMoteur(this);
         super.enregistre("affiche", affiche);

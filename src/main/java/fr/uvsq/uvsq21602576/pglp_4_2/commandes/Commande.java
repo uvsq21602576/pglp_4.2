@@ -11,9 +11,8 @@ public interface Commande {
 
     /**
      * Code à lancer à l'éxecution de cette commande.
-     * @return 
      * @throws CommandeImpossibleException 
      * @throws UndoImpossibleException
      */
-    boolean execute() throws CommandeImpossibleException, UndoImpossibleException;
+    void execute() throws CommandeImpossibleException, UndoImpossibleException;
 }

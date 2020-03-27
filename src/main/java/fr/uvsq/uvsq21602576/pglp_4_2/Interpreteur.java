@@ -23,11 +23,11 @@ public class Interpreteur {
     private Historique historique;
     private final HashMap<String, Commande> commandes;
 
-    public Interpreteur() {
+    public Interpreteur(Arret arret) {
         commandes = new HashMap<String, Commande>();
         historique = new Historique();
         this.enregistre("undo", new CommandeUndo(historique));
-        this.enregistre("exit", new CommandeExit());
+        this.enregistre("exit", new CommandeExit(arret));
         this.enregistre("help", new CommandeAfficheCommande(this));
     }
 
@@ -35,21 +35,20 @@ public class Interpreteur {
         commandes.put(nom, c);
     }
 
-    public Boolean execute(String nomCommande) throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
+    public void execute(String nomCommande) throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
         if (this.commandes.containsKey(nomCommande)) {
             Commande c = this.commandes.get(nomCommande);
-            return this.execute(c);
+            this.execute(c);
         } else {
             throw new NoCommandException(nomCommande);
         }
     }
 
-    public boolean execute(Commande c) throws CommandeImpossibleException, UndoImpossibleException {
-        boolean arret = c.execute();
+    public void execute(Commande c) throws CommandeImpossibleException, UndoImpossibleException {
+        c.execute();
         if (c instanceof CommandeUndoable) {
             historique.ajoute((CommandeUndoable) c);
         }
-        return arret;
     }
 
     public List<String> keySet() {
@@ -58,5 +57,9 @@ public class Interpreteur {
 
     public String afficheCommandes() {
         return commandes.keySet().toString();
+    }
+    
+    public List<CommandeUndoable> getHistorique() {
+        return historique.getHistorique();
     }
 }

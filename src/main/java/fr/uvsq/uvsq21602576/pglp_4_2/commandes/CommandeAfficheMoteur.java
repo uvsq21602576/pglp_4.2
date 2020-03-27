@@ -10,9 +10,8 @@ public class CommandeAfficheMoteur implements Commande {
         this.moteur = m;
     }
 
-    public boolean execute() {
+    public void execute() {
         System.out.println(this.moteur.afficheOperandes());
-        return false;
     }
 
 }

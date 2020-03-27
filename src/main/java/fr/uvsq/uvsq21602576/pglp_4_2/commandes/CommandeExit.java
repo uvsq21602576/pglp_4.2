@@ -1,14 +1,17 @@
 package fr.uvsq.uvsq21602576.pglp_4_2.commandes;
 
-public class CommandeExit implements Commande {
+import fr.uvsq.uvsq21602576.pglp_4_2.Arret;
 
-    public CommandeExit() {
-        
+public class CommandeExit implements Commande {
+    private Arret arret;
+
+    public CommandeExit(Arret arret2) {
+        this.arret = arret2;
     }
 
-    public boolean execute() {
+    public void execute() {
         System.out.println("Exit");
-        return true;
+        this.arret.setArret();
     }
 
 }

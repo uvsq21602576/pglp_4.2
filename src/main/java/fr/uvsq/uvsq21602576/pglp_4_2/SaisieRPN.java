@@ -9,9 +9,11 @@ import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 public class SaisieRPN {
 
     private MoteurRPN moteur;
+    private Arret arret;
 
     public SaisieRPN() {
-        this.moteur = new MoteurRPN();
+        this.arret = new Arret();
+        this.moteur = new MoteurRPN(arret);
     }
     
     /**
@@ -44,7 +46,7 @@ public class SaisieRPN {
     }
     
     
-    private boolean interprete(String str) {
+    private void interprete(String str) {
         if(isDouble(str)) {
             try {
                 moteur.executeAjoutOperande(Double.parseDouble(str));
@@ -59,12 +61,11 @@ public class SaisieRPN {
             }
         } else {
             try {
-                return moteur.execute(str);
+                moteur.execute(str);
             } catch (NoCommandException | CommandeImpossibleException | UndoImpossibleException e) {
                 System.err.println(e.getMessage());
             }
         }
-        return false;
     }
     
     public void lanceSaisie() {
@@ -74,10 +75,10 @@ public class SaisieRPN {
                 + "par mots de l'opération, ou \"undo\" pour revenir "
                 + "en arrière ou \"exit\" pour quitter :");
         String str = "";
-        boolean arret = false;
-        while(!arret) {
+        //boolean arret = false;
+        while(!arret.isArret()) {
             str = sc.nextLine();
-            arret = interprete(str);
+            interprete(str);
         }
         sc.close();
     }

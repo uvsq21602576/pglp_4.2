@@ -14,10 +14,9 @@ public class CommandeUndo implements Commande {
         this.historique = h;
     }
 
-    public boolean execute() throws UndoImpossibleException {
+    public void execute() throws UndoImpossibleException {
         historique.retourArriere();
         System.out.println("undo effectué");
-        return false;
     }
 
 }

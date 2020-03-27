@@ -10,9 +10,8 @@ public class CommandeAfficheCommande implements Commande {
         this.interpreteur = i;
     }
     
-    public boolean execute() {
+    public void execute() {
         System.out.println(interpreteur.afficheCommandes());
-        return false;
     }
 
 }

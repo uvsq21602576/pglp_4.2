@@ -13,9 +13,8 @@ public class CommandeAjoutOperande implements CommandeUndoable {
         this.operande = ope;
     }
     
-    public boolean execute() {
+    public void execute() {
         moteur.enregistreOperande(operande);
-        return false;
     }
 
     public void undo() throws UndoImpossibleException {
