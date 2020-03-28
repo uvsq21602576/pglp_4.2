@@ -16,6 +16,7 @@ import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 public class Historique {
     /**
      * Liste des commandes.
+     * Ne contient que les commandes pouvant être annulées.
      */
     private ArrayList<CommandeUndoable> historique;
 

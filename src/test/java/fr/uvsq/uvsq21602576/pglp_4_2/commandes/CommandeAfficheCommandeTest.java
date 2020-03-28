@@ -10,8 +10,15 @@ import org.junit.Test;
 import fr.uvsq.uvsq21602576.pglp_4_2.Interpreteur;
 import fr.uvsq.uvsq21602576.pglp_4_2.MoteurRPN;
 
+/**
+ * Teste le Commande AfficheCommande.
+ * @author Flora
+ */
 public class CommandeAfficheCommandeTest {
 
+    /**
+     * Teste son execution avec un interpreteur.
+     */
     @Test
     public void executeInterpreteurTest() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -27,6 +34,9 @@ public class CommandeAfficheCommandeTest {
         assertEquals(i.afficheCommandes(), observed);
     }
     
+    /**
+     * Teste son execution avec un moteur.
+     */
     @Test
     public void executeMoteurTest() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

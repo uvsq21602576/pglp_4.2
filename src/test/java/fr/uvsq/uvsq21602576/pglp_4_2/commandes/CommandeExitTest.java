@@ -6,8 +6,15 @@ import org.junit.Test;
 
 import fr.uvsq.uvsq21602576.pglp_4_2.Arret;
 
+/**
+ * Teste la commande Exit.
+ * @author Flora
+ */
 public class CommandeExitTest {
 
+    /**
+     * Teste son execution.
+     */
     @Test
     public void executeTest() {
         Arret arret = new Arret();

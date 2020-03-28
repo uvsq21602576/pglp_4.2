@@ -10,8 +10,15 @@ import org.junit.Test;
 
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbsenteException;
 
+/**
+ * Teste le moteurRPN.
+ * @author Flora
+ */
 public class MoteurRPNTest {
     
+    /**
+     * Teste la construction.
+     */
     @Test
     public void constructeurTest() {
         MoteurRPN m = new MoteurRPN(null);
@@ -24,6 +31,9 @@ public class MoteurRPNTest {
         assertTrue(m.getOperandes().isEmpty());
     }
     
+    /**
+     * Teste l'enregistrement d'une opérande.
+     */
     @Test
     public void enregistreOperandeTest() {
         MoteurRPN m = new MoteurRPN(null);
@@ -33,6 +43,11 @@ public class MoteurRPNTest {
         assertEquals(expected, m.getOperandes());
     }
     
+    /**
+     * Teste le retirment d'une opérande.
+     * Dans le cas où tout marche bien.
+     * @throws OperandeAbsenteException En cas d'aucune opérande à retirer.
+     */
     @Test
     public void retireOperandeTest() throws OperandeAbsenteException {
         MoteurRPN m = new MoteurRPN(null);
@@ -42,12 +57,20 @@ public class MoteurRPNTest {
         assertTrue(m.getOperandes().isEmpty());
     }
     
+    /**
+     * Teste le retirment d'une opérande.
+     * En cas de moteur vide.
+     * @throws OperandeAbsenteException En cas d'aucune opérande à retirer.
+     */
     @Test(expected=OperandeAbsenteException.class)
     public void retireOperandeExpectionVideTest() throws OperandeAbsenteException {
         MoteurRPN m = new MoteurRPN(null);
         m.retireOperande();
     }
     
+    /**
+     * Teste l'affichage des commandes.
+     */
     @Test
     public void afficheCommandeTest() {
         MoteurRPN i = new MoteurRPN(null);
@@ -58,6 +81,9 @@ public class MoteurRPNTest {
         assertEquals(expected, i.afficheCommandes());
     }
     
+    /**
+     * Teste l'affichage des opérandes.
+     */
     @Test
     public void afficheOperandesTest() {
         MoteurRPN m = new MoteurRPN(null);

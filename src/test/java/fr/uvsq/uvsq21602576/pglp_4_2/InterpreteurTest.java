@@ -15,8 +15,16 @@ import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.NoCommandException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
+/**
+ * Test pour Interpreteur.
+ * @author Flora
+ *
+ */
 public class InterpreteurTest {
 
+    /**
+     * Teste la construction.
+     */
     @Test
     public void constructeurTest() {
         Interpreteur i = new Interpreteur(null);
@@ -27,6 +35,9 @@ public class InterpreteurTest {
         assertEquals(expected, i.keySet());
     }
     
+    /**
+     * Teste l'enregistrement de commande.
+     */
     @Test
     public void enregistreTest() {
         Interpreteur i = new Interpreteur(null);
@@ -37,6 +48,14 @@ public class InterpreteurTest {
         assertTrue(i.keySet().contains("test"));
     }
     
+    /**
+     * Teste l'execution de commande.
+     * Dans le cas où tout marche bien,
+     * avec une commande non annulable.
+     * @throws NoCommandException   Si la commande n'existe pas.
+     * @throws CommandeImpossibleException  Si la commande est impossible.
+     * @throws UndoImpossibleException  Si la commande undo echoue.
+     */
     @Test
     public void executeTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
@@ -47,6 +66,14 @@ public class InterpreteurTest {
         i.execute("test");
     }
     
+    /**
+     * Teste l'execution de commande.
+     * Dans le cas où tout marche bien,
+     * avec une commande annulable.
+     * @throws NoCommandException   Si la commande n'existe pas.
+     * @throws CommandeImpossibleException  Si la commande est impossible.
+     * @throws UndoImpossibleException  Si la commande undo echoue.
+     */
     @Test
     public void executeHistoriqueTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
@@ -65,12 +92,26 @@ public class InterpreteurTest {
         assertEquals(expected,i.getHistorique());
     }
     
+    /**
+     * Teste l'execution de commande.
+     * En cas de commande non existante.
+     * @throws NoCommandException   Si la commande n'existe pas.
+     * @throws CommandeImpossibleException  Si la commande est impossible.
+     * @throws UndoImpossibleException  Si la commande undo echoue.
+     */
     @Test(expected=NoCommandException.class)
-    public void executeExceptionTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
+    public void executeExceptionInconnuTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
         i.execute("test");
     }
     
+    /**
+     * Teste l'execution de commande.
+     * En cas de commande impossible.
+     * @throws NoCommandException   Si la commande n'existe pas.
+     * @throws CommandeImpossibleException  Si la commande est impossible.
+     * @throws UndoImpossibleException  Si la commande undo echoue.
+     */
     @Test(expected=CommandeImpossibleException.class)
     public void executeExceptionCommandeTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
@@ -82,6 +123,9 @@ public class InterpreteurTest {
         i.execute("test");
     }
 
+    /**
+     * Teste l'affichage des commandes.
+     */
     @Test
     public void afficheCommandeTest() {
         Interpreteur i = new Interpreteur(null);

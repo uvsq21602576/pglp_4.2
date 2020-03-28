@@ -12,8 +12,15 @@ import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeUndoable;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
+/**
+ * Teste pour Historique.
+ * @author Flora
+ */
 public class HistoriqueTest {
 
+    /**
+     * Teste la méthode add.
+     */
     @Test
     public void addTest() {
         Historique h = new Historique();
@@ -30,6 +37,11 @@ public class HistoriqueTest {
         assertEquals(expected, h.getHistorique());
     }
 
+    /**
+     * Teste le retour Arriere.
+     * Dans le cas où tout marche bien.
+     * @throws UndoImpossibleException  Si l'annulation échouerait.
+     */
     @Test
     public void retourArriereTest() throws UndoImpossibleException {
         Historique h = new Historique();
@@ -47,12 +59,22 @@ public class HistoriqueTest {
         assertTrue(h.getHistorique().isEmpty());
     }
 
+    /**
+     * Teste le retour Arriere.
+     * En cas d'historique vide.
+     * @throws UndoImpossibleException  Si l'annulation échoue.
+     */
     @Test(expected=UndoImpossibleException.class)
     public void retourArriereExceptionVideTest() throws UndoImpossibleException {
         Historique h = new Historique();
         h.retourArriere();
     }
 
+    /**
+     * Teste le retour Arriere.
+     * En cas d'annulation impossible.
+     * @throws UndoImpossibleException  Si l'annulation échoue.
+     */
     @Test
     public void retourArriereExceptionImpossibleTest() {
         Historique h = new Historique();

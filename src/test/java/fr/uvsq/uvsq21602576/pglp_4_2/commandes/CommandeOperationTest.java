@@ -12,10 +12,19 @@ import fr.uvsq.uvsq21602576.pglp_4_2.Operation;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
+/**
+ * Teste la commande Operation.
+ * @author Flora
+ */
 public class CommandeOperationTest {
 
+    /**
+     * Teste son execution.
+     * Quand tout marche bien.
+     * @throws CommandeImpossibleException  En cas d'echec de la commande.
+     */
     @Test
-    public void executePlusTest() throws CommandeImpossibleException {
+    public void executeTest() throws CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
         m.enregistreOperande(3.);
         m.enregistreOperande(5.);
@@ -27,6 +36,11 @@ public class CommandeOperationTest {
         assertEquals(expected, m.getOperandes());
     }
 
+    /**
+     * Teste son execution.
+     * En cas de division par zero.
+     * @throws CommandeImpossibleException  En cas d'echec de la commande.
+     */
     @Test
     public void executeExceptionDivZeroTest() {
         MoteurRPN m = new MoteurRPN(null);
@@ -44,6 +58,11 @@ public class CommandeOperationTest {
         }
     }
 
+    /**
+     * Teste son execution.
+     * En cas de moteur vide.
+     * @throws CommandeImpossibleException  En cas d'echec de la commande.
+     */
     @Test(expected=CommandeImpossibleException.class)
     public void executeExceptionVideTest() throws CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
@@ -51,6 +70,11 @@ public class CommandeOperationTest {
         c.execute();
     }
 
+    /**
+     * Teste son execution.
+     * En cas de moteur à une seule opérande.
+     * @throws CommandeImpossibleException  En cas d'echec de la commande.
+     */
     @Test
     public void executeExceptionPasAssezTest() {
         MoteurRPN m = new MoteurRPN(null);
@@ -66,6 +90,12 @@ public class CommandeOperationTest {
         }
     }
 
+    /**
+     * Teste l'annulation.
+     * Quand tout marche bien.
+     * @throws UndoImpossibleException  En cas d'echec de l'undo.
+     * @throws CommandeImpossibleException En cas d'echec de la commande.
+     */
     @Test
     public void undoTest() throws UndoImpossibleException, CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
@@ -81,6 +111,12 @@ public class CommandeOperationTest {
         assertEquals(expected, m.getOperandes());
     }
 
+    /**
+     * Teste l'annulation.
+     * Quand l'etat du moteur ne correspondant pas avec la commande à annuler.
+     * @throws UndoImpossibleException  En cas d'echec de l'undo.
+     * @throws CommandeImpossibleException En cas d'echec de la commande.
+     */
     @Test
     public void undoExceptionMauvaiseTest() throws CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
@@ -101,6 +137,12 @@ public class CommandeOperationTest {
         }
     }
     
+    /**
+     * Teste l'annulation.
+     * Quand le moteur est vide.
+     * @throws UndoImpossibleException  En cas d'echec de l'undo.
+     * @throws CommandeImpossibleException En cas d'echec de la commande.
+     */
     @Test
     public void undoExceptionVideTest() throws CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);

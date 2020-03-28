@@ -13,8 +13,17 @@ import fr.uvsq.uvsq21602576.pglp_4_2.Historique;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
+/**
+ * Teste la commande undo.
+ * @author Flora
+ */
 public class CommandeUndoTest {
 
+    /**
+     * Teste l'execution.
+     * Quand tout marche bien.
+     * @throws UndoImpossibleException  En cas d'undo impossible.
+     */
     @Test
     public void executeTest() throws UndoImpossibleException {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -42,6 +51,11 @@ public class CommandeUndoTest {
         assertEquals("undo effectué", observed);
     }
 
+    /**
+     * Teste l'execution.
+     * En cas d'historique vide.
+     * @throws UndoImpossibleException  En cas d'undo impossible.
+     */
     @Test
     public void executeExceptionTest() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

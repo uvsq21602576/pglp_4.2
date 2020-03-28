@@ -7,17 +7,47 @@ import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.DivisionParZeroException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbsenteException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
+/**
+ * Comme pour effectuer une opération.
+ * @author Flora
+ */
 public class CommandeOperation implements CommandeUndoable {
+    /**
+     * Moteru dans lequelle elle est appelée.
+     */
     private MoteurRPN moteur;
+    /**
+     * Operation a effectuer.
+     */
     private Operation operation;
+    /**
+     * Opérande sur lequel effectuer l'opération.
+     */
     private Double a = null;
+    /**
+     * Opérande sur lequel effectuer l'opération.
+     */
     private Double b = null;
-    
+
+    /**
+     * Constructeur.
+     * Crée la commande à partir du moteur dans lequel
+     * elle est appelée et l'opération à effectuée.
+     * @param m Moteur
+     * @param ope   Operation à effectuer
+     */
     public CommandeOperation(MoteurRPN m, Operation ope) {
         this.moteur = m;
         this.operation = ope;
     }
 
+    /**
+     * Execution.
+     * Effectue l'opération avec les deux premières opérandes
+     * du moteur, retirée de la pile, et ajoute le resulat dans la pile.
+     * @throws CommandeImpossibleException 
+     *      Si il manque des opérandes ou que l'opération est impossbile.
+     */
     public void execute() throws CommandeImpossibleException {
         try {
             b = this.moteur.retireOperande();
@@ -40,6 +70,13 @@ public class CommandeOperation implements CommandeUndoable {
         }
     }
 
+    /**
+     * Annulation.
+     * Retire le resulat de l'opération et
+     * remets les opérandes dans le moteur.
+     * @throws UndoImpossibleException Si aucun résulat n'est présent,
+     *      ou si l'opération effectué ne correspond pas au résultat dans le moteur.
+     */
     public void undo() throws UndoImpossibleException {
         Double result;
         try {
