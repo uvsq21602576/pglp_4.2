@@ -1,5 +1,7 @@
 package fr.uvsq.uvsq21602576.pglp_4_2;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.Commande;
@@ -8,7 +10,7 @@ import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeAjoutOperande;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeOperation;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.NoCommandException;
-import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbstenteException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbsenteException;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
 public class MoteurRPN extends Interpreteur {
@@ -29,11 +31,15 @@ public class MoteurRPN extends Interpreteur {
         operandes.push(a);
     }
     
-    public double retireOperande() throws OperandeAbstenteException {
+    public double retireOperande() throws OperandeAbsenteException {
         if(operandes.isEmpty()) {
-            throw new OperandeAbstenteException();
+            throw new OperandeAbsenteException();
         }
         return operandes.pop();
+    }
+    
+    public List<Double> getOperandes() {
+        return Collections.unmodifiableList(this.operandes);
     }
     
     public void executeAjoutOperande(double o) throws CommandeImpossibleException, NoCommandException, UndoImpossibleException {

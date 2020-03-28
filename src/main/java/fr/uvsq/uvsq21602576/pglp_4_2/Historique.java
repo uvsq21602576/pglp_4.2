@@ -7,17 +7,39 @@ import java.util.List;
 import fr.uvsq.uvsq21602576.pglp_4_2.commandes.CommandeUndoable;
 import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
 
+/**
+ * Représente un historique.
+ * Contient une liste de commande.
+ * Peut effectuer un retour en arrière.
+ * @author Flora
+ */
 public class Historique {
+    /**
+     * Liste des commandes.
+     */
     private ArrayList<CommandeUndoable> historique;
 
+    /**
+     * Constructeur.
+     * Crée un historique vide.
+     */
     public Historique() {
         historique =  new ArrayList<CommandeUndoable>();
     }
     
+    /**
+     * Ajoute une commande à l'historique.
+     * @param c Commande à ajouter.
+     */
     public void ajoute(CommandeUndoable c) {
         historique.add(c);
     }
     
+    /**
+     * Effectue un retour en arrière.
+     * Annule la dernière commande ajouté.
+     * @throws UndoImpossibleException  Si l'annulation est impossible.
+     */
     public void retourArriere() throws UndoImpossibleException {
         if(historique.isEmpty()) {
             throw new UndoImpossibleException("L'historique est vide.");
@@ -31,6 +53,11 @@ public class Historique {
         }
     }
     
+    /**
+     * Retourne l'historique.
+     * Sous forme d'une liste de commandes non modifiable.
+     * @return
+     */
     public List<CommandeUndoable> getHistorique() {
         return Collections.unmodifiableList(historique);
     }

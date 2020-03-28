@@ -82,4 +82,10 @@ public class InterpreteurTest {
         i.execute("test");
     }
 
+    @Test
+    public void afficheCommandeTest() {
+        Interpreteur i = new Interpreteur(null);
+        String expected = "[exit, help, undo]";
+        assertEquals(expected, i.afficheCommandes());
+    }
 }
