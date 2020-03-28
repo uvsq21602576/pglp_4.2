@@ -1,11 +1,9 @@
 package fr.uvsq.uvsq21602576.pglp_4_2;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -34,7 +32,7 @@ public class InterpreteurTest {
         expected.add("undo");
         assertEquals(expected, i.keySet());
     }
-    
+
     /**
      * Teste l'enregistrement de commande.
      */
@@ -47,7 +45,7 @@ public class InterpreteurTest {
         });
         assertTrue(i.keySet().contains("test"));
     }
-    
+
     /**
      * Teste l'execution de commande.
      * Dans le cas où tout marche bien,
@@ -57,7 +55,8 @@ public class InterpreteurTest {
      * @throws UndoImpossibleException  Si la commande undo echoue.
      */
     @Test
-    public void executeTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
+    public void executeTest() throws NoCommandException,
+    CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
         i.enregistre("test", new Commande() {
             public void execute() {
@@ -65,7 +64,7 @@ public class InterpreteurTest {
         });
         i.execute("test");
     }
-    
+
     /**
      * Teste l'execution de commande.
      * Dans le cas où tout marche bien,
@@ -75,7 +74,8 @@ public class InterpreteurTest {
      * @throws UndoImpossibleException  Si la commande undo echoue.
      */
     @Test
-    public void executeHistoriqueTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
+    public void executeHistoriqueTest() throws NoCommandException,
+    CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
         CommandeUndoable c = new CommandeUndoable() {
             public void execute() {
@@ -89,9 +89,9 @@ public class InterpreteurTest {
         i.execute("test");
         ArrayList<CommandeUndoable> expected = new ArrayList<>();
         expected.add(c);
-        assertEquals(expected,i.getHistorique());
+        assertEquals(expected, i.getHistorique());
     }
-    
+
     /**
      * Teste l'execution de commande.
      * En cas de commande non existante.
@@ -99,12 +99,13 @@ public class InterpreteurTest {
      * @throws CommandeImpossibleException  Si la commande est impossible.
      * @throws UndoImpossibleException  Si la commande undo echoue.
      */
-    @Test(expected=NoCommandException.class)
-    public void executeExceptionInconnuTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
+    @Test(expected = NoCommandException.class)
+    public void executeExceptionInconnuTest() throws NoCommandException,
+    CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
         i.execute("test");
     }
-    
+
     /**
      * Teste l'execution de commande.
      * En cas de commande impossible.
@@ -112,8 +113,9 @@ public class InterpreteurTest {
      * @throws CommandeImpossibleException  Si la commande est impossible.
      * @throws UndoImpossibleException  Si la commande undo echoue.
      */
-    @Test(expected=CommandeImpossibleException.class)
-    public void executeExceptionCommandeTest() throws NoCommandException, CommandeImpossibleException, UndoImpossibleException {
+    @Test(expected = CommandeImpossibleException.class)
+    public void executeExceptionCommandeTest() throws NoCommandException,
+    CommandeImpossibleException, UndoImpossibleException {
         Interpreteur i = new Interpreteur(null);
         i.enregistre("test", new Commande() {
             public void execute() throws CommandeImpossibleException {

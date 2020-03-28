@@ -39,7 +39,7 @@ public class Interpreteur {
      * </ul>
      * @param arret Pour signaler l'arret du programme.
      */
-    public Interpreteur(Arret arret) {
+    public Interpreteur(final Arret arret) {
         commandes = new HashMap<String, Commande>();
         historique = new Historique();
         this.enregistre("undo", new CommandeUndo(historique));
@@ -52,7 +52,7 @@ public class Interpreteur {
      * @param nom   Nom de la commande
      * @param c Commande
      */
-    protected void enregistre(String nom, Commande c) {
+    protected void enregistre(final String nom, final Commande c) {
         commandes.put(nom, c);
     }
 
@@ -66,9 +66,9 @@ public class Interpreteur {
      * @throws UndoImpossibleException  Si la commande undo a été
      *      impossible a effectuer.
      */
-    public void execute(String nomCommande)
+    public void execute(final String nomCommande)
             throws NoCommandException, CommandeImpossibleException,
-                UndoImpossibleException {
+            UndoImpossibleException {
         if (this.commandes.containsKey(nomCommande)) {
             Commande c = this.commandes.get(nomCommande);
             this.execute(c);
@@ -85,8 +85,8 @@ public class Interpreteur {
      * @throws UndoImpossibleException Si la commande undo a été
      *      impossible a effectuer.
      */
-    public void execute(Commande c) throws CommandeImpossibleException,
-        UndoImpossibleException {
+    public void execute(final Commande c) throws CommandeImpossibleException,
+    UndoImpossibleException {
         c.execute();
         if (c instanceof CommandeUndoable) {
             historique.ajoute((CommandeUndoable) c);
@@ -96,7 +96,7 @@ public class Interpreteur {
     /**
      * Retourne la liste des noms de commandes.
      * Sous forme de liste non modifiable.
-     * @return
+     * @return liste de commandes non modifiable
      */
     public List<String> keySet() {
         return Collections.unmodifiableList(

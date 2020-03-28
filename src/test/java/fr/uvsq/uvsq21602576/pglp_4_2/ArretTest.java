@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author Flora
  */
 public class ArretTest {
-    
+
     /**
      * Teste sa construction.
      */
@@ -19,7 +19,7 @@ public class ArretTest {
         Arret arret = new Arret();
         assertFalse(arret.isArret());
     }
-    
+
     /**
      * Teste la méthode setArret.
      */

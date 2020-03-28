@@ -18,14 +18,14 @@ public class CommandeUndo implements Commande {
      * Crée la commande à partir de l'historique.
      * @param h Historique.
      */
-    public CommandeUndo(Historique h) {
+    public CommandeUndo(final Historique h) {
         this.historique = h;
     }
 
     /**
      * Execution.
      * Annule la dernieère commande de l'historique.
-     * @throws UdoImpossibleException  En cas d'echec de l'annulation.
+     * @throws UndoImpossibleException  En cas d'echec de l'annulation.
      */
     public void execute() throws UndoImpossibleException {
         historique.retourArriere();

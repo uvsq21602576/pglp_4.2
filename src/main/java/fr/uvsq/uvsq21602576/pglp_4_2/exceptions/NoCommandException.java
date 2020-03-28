@@ -13,7 +13,7 @@ public class NoCommandException extends CalculatriceRPNException {
      * Et le nom de la commande indiquée.
      * @param commande nom de la commande inconnue.
      */
-    public NoCommandException(String commande) {
-        super("No entry for \""+commande+"\"");
+    public NoCommandException(final String commande) {
+        super("No entry for \"" + commande + "\"");
     }
 }

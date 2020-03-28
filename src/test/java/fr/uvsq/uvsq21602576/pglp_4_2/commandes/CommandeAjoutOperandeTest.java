@@ -49,7 +49,7 @@ public class CommandeAjoutOperandeTest {
      * En cas d'historique vide.
      * @throws UndoImpossibleException  En cas d'echec d'undo
      */
-    @Test(expected=UndoImpossibleException.class)
+    @Test(expected = UndoImpossibleException.class)
     public void undoExceptionVideTest() throws UndoImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
         CommandeAjoutOperande c = new CommandeAjoutOperande(m, 3);
@@ -60,7 +60,6 @@ public class CommandeAjoutOperandeTest {
      * Teste son annulation.
      * En cas de dernière command ne
      * correspondant pas à celle voulant être annulée.
-     * @throws UndoImpossibleException  En cas d'echec d'undo
      */
     @Test
     public void undoExceptionMauvaiseTest() {

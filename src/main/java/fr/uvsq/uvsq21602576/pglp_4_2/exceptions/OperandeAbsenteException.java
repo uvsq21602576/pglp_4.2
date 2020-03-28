@@ -7,10 +7,10 @@ package fr.uvsq.uvsq21602576.pglp_4_2.exceptions;
  * @author Flora
  */
 public class OperandeAbsenteException extends CalculatriceRPNException {
-    
+
     /**
      * Constructeur.
-     * Crée une exception avec comme message 
+     * Crée une exception avec comme message
      * "Pas assez d'opérandes enregistrées
      *  pour effectuer l'opération."
      */

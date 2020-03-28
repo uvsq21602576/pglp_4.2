@@ -9,10 +9,10 @@ public class CommandeImpossibleException extends CalculatriceRPNException {
 
     /**
      * Constructeur.
-     * Le message décrit e qui s'est mal passé à l'exécution de la commande.
+     * Le message décrit ce qui s'est mal passé à l'exécution de la commande.
      * @param message   Message
      */
-    public CommandeImpossibleException(String message) {
-        super("Commande impossible à executer : "+message);
+    public CommandeImpossibleException(final String message) {
+        super("Commande impossible à executer : " + message);
     }
 }

@@ -36,7 +36,7 @@ public class CommandeOperation implements CommandeUndoable {
      * @param m Moteur
      * @param ope   Operation à effectuer
      */
-    public CommandeOperation(MoteurRPN m, Operation ope) {
+    public CommandeOperation(final MoteurRPN m, final Operation ope) {
         this.moteur = m;
         this.operation = ope;
     }
@@ -45,7 +45,7 @@ public class CommandeOperation implements CommandeUndoable {
      * Execution.
      * Effectue l'opération avec les deux premières opérandes
      * du moteur, retirée de la pile, et ajoute le resulat dans la pile.
-     * @throws CommandeImpossibleException 
+     * @throws CommandeImpossibleException
      *      Si il manque des opérandes ou que l'opération est impossbile.
      */
     public void execute() throws CommandeImpossibleException {
@@ -75,17 +75,19 @@ public class CommandeOperation implements CommandeUndoable {
      * Retire le resulat de l'opération et
      * remets les opérandes dans le moteur.
      * @throws UndoImpossibleException Si aucun résulat n'est présent,
-     *      ou si l'opération effectué ne correspond pas au résultat dans le moteur.
+     *      ou si l'opération effectué ne correspond
+     *      pas au résultat dans le moteur.
      */
     public void undo() throws UndoImpossibleException {
         Double result;
         try {
             result = this.moteur.retireOperande();
         } catch (OperandeAbsenteException e1) {
-            throw new UndoImpossibleException("Aucune opérande présente comme résultat précédent.");
+            throw new UndoImpossibleException("Aucune"
+                    + "opérande présente comme résultat précédent.");
         }
         try {
-            if(a==null || b==null || this.operation.eval(a,b) != result) {
+            if (a == null || b == null || this.operation.eval(a, b) != result) {
                 this.moteur.enregistreOperande(result);
                 throw new UndoImpossibleException("Mauvaise opération.");
             }

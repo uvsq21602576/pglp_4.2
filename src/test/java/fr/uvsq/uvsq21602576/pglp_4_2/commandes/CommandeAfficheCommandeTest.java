@@ -27,13 +27,13 @@ public class CommandeAfficheCommandeTest {
         Interpreteur i = new Interpreteur(null);
         CommandeAfficheCommande c = new CommandeAfficheCommande(i);
         c.execute();
-        
+
         System.setOut(System.out);
         String observed = outContent.toString().trim();
-        
+
         assertEquals(i.afficheCommandes(), observed);
     }
-    
+
     /**
      * Teste son execution avec un moteur.
      */
@@ -45,10 +45,10 @@ public class CommandeAfficheCommandeTest {
         MoteurRPN m = new MoteurRPN(null);
         CommandeAfficheCommande c = new CommandeAfficheCommande(m);
         c.execute();
-        
+
         System.setOut(System.out);
         String observed = outContent.toString().trim();
-        
+
         assertEquals(m.afficheCommandes(), observed);
     }
 }

@@ -18,7 +18,7 @@ public class CommandeExit implements Commande {
      * Crée une commande avec l'arret.
      * @param arret2    Arret
      */
-    public CommandeExit(Arret arret2) {
+    public CommandeExit(final Arret arret2) {
         this.arret = arret2;
     }
 

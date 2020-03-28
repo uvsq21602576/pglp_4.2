@@ -28,10 +28,10 @@ public class CommandeAfficheMoteurTest {
         m.enregistreOperande(3);
         CommandeAfficheMoteur c = new CommandeAfficheMoteur(m);
         c.execute();
-        
+
         System.setOut(System.out);
         String observed = outContent.toString().trim();
-        
+
         assertEquals(m.afficheOperandes(), observed);
     }
 }

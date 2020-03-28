@@ -32,14 +32,13 @@ public class CommandeOperationTest {
         c.execute();
 
         ArrayList<Double> expected = new ArrayList<>();
-        expected.add(3.+5);
+        expected.add(3. + 5);
         assertEquals(expected, m.getOperandes());
     }
 
     /**
      * Teste son execution.
      * En cas de division par zero.
-     * @throws CommandeImpossibleException  En cas d'echec de la commande.
      */
     @Test
     public void executeExceptionDivZeroTest() {
@@ -63,7 +62,7 @@ public class CommandeOperationTest {
      * En cas de moteur vide.
      * @throws CommandeImpossibleException  En cas d'echec de la commande.
      */
-    @Test(expected=CommandeImpossibleException.class)
+    @Test(expected = CommandeImpossibleException.class)
     public void executeExceptionVideTest() throws CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
         CommandeOperation c = new CommandeOperation(m, Operation.DIV);
@@ -73,7 +72,6 @@ public class CommandeOperationTest {
     /**
      * Teste son execution.
      * En cas de moteur à une seule opérande.
-     * @throws CommandeImpossibleException  En cas d'echec de la commande.
      */
     @Test
     public void executeExceptionPasAssezTest() {
@@ -97,7 +95,8 @@ public class CommandeOperationTest {
      * @throws CommandeImpossibleException En cas d'echec de la commande.
      */
     @Test
-    public void undoTest() throws UndoImpossibleException, CommandeImpossibleException {
+    public void undoTest() throws UndoImpossibleException,
+    CommandeImpossibleException {
         MoteurRPN m = new MoteurRPN(null);
         m.enregistreOperande(3.);
         m.enregistreOperande(5.);
@@ -114,7 +113,6 @@ public class CommandeOperationTest {
     /**
      * Teste l'annulation.
      * Quand l'etat du moteur ne correspondant pas avec la commande à annuler.
-     * @throws UndoImpossibleException  En cas d'echec de l'undo.
      * @throws CommandeImpossibleException En cas d'echec de la commande.
      */
     @Test
@@ -136,11 +134,10 @@ public class CommandeOperationTest {
                     e.getMessage());
         }
     }
-    
+
     /**
      * Teste l'annulation.
      * Quand le moteur est vide.
-     * @throws UndoImpossibleException  En cas d'echec de l'undo.
      * @throws CommandeImpossibleException En cas d'echec de la commande.
      */
     @Test

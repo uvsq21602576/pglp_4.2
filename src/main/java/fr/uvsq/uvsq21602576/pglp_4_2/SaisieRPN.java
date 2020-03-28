@@ -2,9 +2,7 @@ package fr.uvsq.uvsq21602576.pglp_4_2;
 
 import java.util.Scanner;
 
-import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CommandeImpossibleException;
-import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.NoCommandException;
-import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.UndoImpossibleException;
+import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.CalculatriceRPNException;
 
 /**
  * Classe gérant l'interaction avec l'utilisateur.
@@ -35,30 +33,35 @@ public class SaisieRPN {
      * Teste si une chaine de caractère répresente un Double.
      * Un double peut commencer par '+' ou '-',
      * continuer sur des chiffres, avoir une virgule '.',
-     * finir par des chiffres. 
+     * finir par des chiffres.
      * @param s chaine de caractère à tester
      * @return  TRUE si s représente un Double et FALSE sinon
      */
-    private boolean isDouble(String s) {
-        if(s.isEmpty())
+    private boolean isDouble(final String s) {
+        if (s.isEmpty()) {
             return false;
-
+        }
         int indice = 0;
-        String nombre ="1234567890";
-        if(s.length()!=1 && (s.charAt(indice)=='-' || s.charAt(indice)=='+')) {
+        String nombre = "1234567890";
+        if (s.length() != 1
+                && (s.charAt(indice) == '-'
+                || s.charAt(indice) == '+')) {
             indice++;
         }
-        while(indice<s.length() && nombre.contains(String.valueOf(s.charAt(indice)))) {
+        while (indice < s.length()
+                && nombre.contains(String.valueOf(s.charAt(indice)))) {
             indice++;
         }
-        if(indice<s.length() && s.length()!=1 && s.charAt(indice)=='.') {
+        if (indice < s.length() && s.length() != 1 && s.charAt(indice) == '.') {
             indice++;
         }
-        while(indice<s.length() && nombre.contains(String.valueOf(s.charAt(indice)))) {
+        while (indice < s.length()
+                && nombre.contains(String.valueOf(s.charAt(indice)))) {
             indice++;
         }
-        if(indice==s.length())
+        if (indice == s.length()) {
             return true;
+        }
         return false;
     }
 
@@ -67,23 +70,23 @@ public class SaisieRPN {
      * Peut être une commande, un opérateur, ou une opérande.
      * @param str   saisie de l'utilisateur.
      */
-    private void interprete(String str) {
-        if(isDouble(str)) {
+    private void interprete(final String str) {
+        if (isDouble(str)) {
             try {
                 moteur.executeAjoutOperande(Double.parseDouble(str));
-            } catch (NumberFormatException | CommandeImpossibleException | NoCommandException | UndoImpossibleException e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         } else if (Operation.isOperateur(str)) {
             try {
                 moteur.executeOperation(Operation.getOperation(str.charAt(0)));
-            } catch (CommandeImpossibleException | NoCommandException | UndoImpossibleException e) {
+            } catch (CalculatriceRPNException e) {
                 System.err.println(e.getMessage());
             }
         } else {
             try {
                 moteur.execute(str);
-            } catch (NoCommandException | CommandeImpossibleException | UndoImpossibleException e) {
+            } catch (CalculatriceRPNException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -100,7 +103,7 @@ public class SaisieRPN {
                 + "en arrière ou \"exit\" pour quitter :");
         String str = "";
         //boolean arret = false;
-        while(!arret.isArret()) {
+        while (!arret.isArret()) {
             str = sc.nextLine();
             interprete(str);
         }

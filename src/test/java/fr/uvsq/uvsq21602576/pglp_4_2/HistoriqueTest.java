@@ -26,7 +26,8 @@ public class HistoriqueTest {
         Historique h = new Historique();
         CommandeUndoable c = new CommandeUndoable() {
             @Override
-            public void execute() throws CommandeImpossibleException, UndoImpossibleException { }
+            public void execute() throws CommandeImpossibleException,
+            UndoImpossibleException { }
 
             @Override
             public void undo() throws UndoImpossibleException { }
@@ -47,7 +48,8 @@ public class HistoriqueTest {
         Historique h = new Historique();
         CommandeUndoable c = new CommandeUndoable() {
             @Override
-            public void execute() throws CommandeImpossibleException, UndoImpossibleException {
+            public void execute() throws CommandeImpossibleException,
+            UndoImpossibleException {
             }
 
             @Override
@@ -64,8 +66,9 @@ public class HistoriqueTest {
      * En cas d'historique vide.
      * @throws UndoImpossibleException  Si l'annulation échoue.
      */
-    @Test(expected=UndoImpossibleException.class)
-    public void retourArriereExceptionVideTest() throws UndoImpossibleException {
+    @Test(expected = UndoImpossibleException.class)
+    public void retourArriereExceptionVideTest()
+            throws UndoImpossibleException {
         Historique h = new Historique();
         h.retourArriere();
     }
@@ -73,14 +76,14 @@ public class HistoriqueTest {
     /**
      * Teste le retour Arriere.
      * En cas d'annulation impossible.
-     * @throws UndoImpossibleException  Si l'annulation échoue.
      */
     @Test
     public void retourArriereExceptionImpossibleTest() {
         Historique h = new Historique();
         CommandeUndoable c = new CommandeUndoable() {
             @Override
-            public void execute() throws CommandeImpossibleException, UndoImpossibleException {
+            public void execute() throws CommandeImpossibleException,
+            UndoImpossibleException {
             }
 
             @Override

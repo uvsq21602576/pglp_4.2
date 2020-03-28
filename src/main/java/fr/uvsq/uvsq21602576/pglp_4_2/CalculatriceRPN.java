@@ -25,7 +25,7 @@ public enum CalculatriceRPN {
      * Main.
      * @param args arguments de la ligne de commande
      */
-    public static void main(String args[]) {
+    public static void main(final String[] args) {
         MAIN.run();
     }
 }

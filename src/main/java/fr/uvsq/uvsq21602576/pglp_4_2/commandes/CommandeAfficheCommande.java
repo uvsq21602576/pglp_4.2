@@ -18,7 +18,7 @@ public class CommandeAfficheCommande implements Commande {
      * Crée une Commande à partir de son Interpreteur.
      * @param i Interpreteur.
      */
-    public CommandeAfficheCommande(Interpreteur i) {
+    public CommandeAfficheCommande(final Interpreteur i) {
         this.interpreteur = i;
     }
 

@@ -15,7 +15,7 @@ import fr.uvsq.uvsq21602576.pglp_4_2.exceptions.OperandeAbsenteException;
  * @author Flora
  */
 public class MoteurRPNTest {
-    
+
     /**
      * Teste la construction.
      */
@@ -30,7 +30,7 @@ public class MoteurRPNTest {
         assertEquals(expected, m.keySet());
         assertTrue(m.getOperandes().isEmpty());
     }
-    
+
     /**
      * Teste l'enregistrement d'une opérande.
      */
@@ -42,7 +42,7 @@ public class MoteurRPNTest {
         expected.push(3.);
         assertEquals(expected, m.getOperandes());
     }
-    
+
     /**
      * Teste le retirment d'une opérande.
      * Dans le cas où tout marche bien.
@@ -56,18 +56,19 @@ public class MoteurRPNTest {
         assertEquals(3., observed, 0);
         assertTrue(m.getOperandes().isEmpty());
     }
-    
+
     /**
      * Teste le retirment d'une opérande.
      * En cas de moteur vide.
      * @throws OperandeAbsenteException En cas d'aucune opérande à retirer.
      */
-    @Test(expected=OperandeAbsenteException.class)
-    public void retireOperandeExpectionVideTest() throws OperandeAbsenteException {
+    @Test(expected = OperandeAbsenteException.class)
+    public void retireOperandeExpectionVideTest()
+            throws OperandeAbsenteException {
         MoteurRPN m = new MoteurRPN(null);
         m.retireOperande();
     }
-    
+
     /**
      * Teste l'affichage des commandes.
      */
@@ -76,11 +77,13 @@ public class MoteurRPNTest {
         MoteurRPN i = new MoteurRPN(null);
         String expected = "[exit, help, affiche, undo,";
         String operateur = Operation.afficheOperateurs();
-        expected = expected.concat("\n\t"+operateur.substring(1,operateur.length()-1));
-        expected = expected.concat(",\n\tpour ajouter une opérande : écrivez-la simplement]");
+        expected = expected.concat("\n\t"
+                + operateur.substring(1, operateur.length() - 1));
+        expected = expected.concat(",\n\t"
+                + "pour ajouter une opérande : écrivez-la simplement]");
         assertEquals(expected, i.afficheCommandes());
     }
-    
+
     /**
      * Teste l'affichage des opérandes.
      */

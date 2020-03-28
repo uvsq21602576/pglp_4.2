@@ -10,11 +10,11 @@ public enum Operation {
     /**
      * Addition.
      */
-    PLUS ('+') {
+    PLUS('+') {
         @Override
-        public double eval(double a, double b) {
+        public double eval(final double a, final double b) {
             double result;
-            result = a+b;
+            result = a + b;
 
             return result;
         }
@@ -22,11 +22,11 @@ public enum Operation {
     /**
      * Soustraction.
      */
-    MOINS ('-'){
+    MOINS('-') {
         @Override
-        public double eval(double a, double b) {
+        public double eval(final double a, final double b) {
             double result;
-            result = a-b;
+            result = a - b;
 
             return result;
         }
@@ -34,11 +34,11 @@ public enum Operation {
     /**
      * Multiplication.
      */
-    MULT ('*'){
+    MULT('*') {
         @Override
-        public double eval(double a, double b) {
+        public double eval(final double a, final double b) {
             double result;
-            result = a*b;
+            result = a * b;
 
             return result;
         }
@@ -46,15 +46,16 @@ public enum Operation {
     /**
      * Division.
      */
-    DIV ('/'){
+    DIV('/') {
         @Override
-        public double eval(double a, double b) throws DivisionParZeroException {
+        public double eval(final double a, final double b)
+                throws DivisionParZeroException {
             double result = 0;
-            if(b==0)
+            if (b == 0) {
                 throw new DivisionParZeroException();
-            else
-                result = a/b;
-
+            } else {
+                result = a / b;
+            }
             return result;
         }
     };
@@ -68,26 +69,25 @@ public enum Operation {
      * Constructeur.
      * @param c    Symbole.
      */
-    Operation(char c)
-    {
+    Operation(final char c) {
         symbole = c;
     }
 
     /**
      * Effectue le calcul entre a et b en fonction de l'Operation.
-     * @param a	double
-     * @param b	double
-     * @return	resultat du calcul de a et b
+     * @param a double
+     * @param b double
+     * @return resultat du calcul de a et b
      * @throws DivisionParZeroException    En cas de division par zero.
      */
-    public abstract double eval(double a, double b) throws DivisionParZeroException;
+    public abstract double eval(double a, double b)
+            throws DivisionParZeroException;
 
     /**
      * Retorune le symbole associé à l'opération.
      * @return Symbole de l'opération.
      */
-    public char getSymbole()
-    {
+    public char getSymbole() {
         return symbole;
     }
 
@@ -96,10 +96,10 @@ public enum Operation {
      * @param c    Symbole de l'opération.
      * @return Opération si existante, null sinon.
      */
-    public static Operation getOperation(char c) {
-        Operation o[] = Operation.values();
+    public static Operation getOperation(final char c) {
+        Operation[] o = Operation.values();
         for (int i = 0; i < o.length; i++) {
-            if(o[i].getSymbole()==c) {
+            if (o[i].getSymbole() == c) {
                 return o[i];
             }
         }
@@ -111,10 +111,10 @@ public enum Operation {
      * @param str  Chaine à tester.
      * @return true si Opération existe, false sinon.
      */
-    public static boolean isOperateur(String str) {
-        Operation o[] = Operation.values();
+    public static boolean isOperateur(final String str) {
+        Operation[] o = Operation.values();
         for (int i = 0; i < o.length; i++) {
-            if(str.equals(String.valueOf(o[i].getSymbole()))) {
+            if (str.equals(String.valueOf(o[i].getSymbole()))) {
                 return true;
             }
         }
@@ -127,7 +127,7 @@ public enum Operation {
      * @return liste d'opérateurs.
      */
     public static String afficheOperateurs() {
-        Operation o[] = Operation.values();
+        Operation[] o = Operation.values();
         String s = "[";
         for (int i = 0; i < o.length; i++) {
             s = s.concat(o[i].symbole + ", ");

@@ -12,7 +12,7 @@ public class UndoImpossibleException extends CalculatriceRPNException {
      * Le message décrit ce qui s'est mal passé à l'annulation de la commande.
      * @param message   Message
      */
-    public UndoImpossibleException(String message) {
-        super("Undo impossible à exécuter : "+message);
+    public UndoImpossibleException(final String message) {
+        super("Undo impossible à exécuter : " + message);
     }
 }

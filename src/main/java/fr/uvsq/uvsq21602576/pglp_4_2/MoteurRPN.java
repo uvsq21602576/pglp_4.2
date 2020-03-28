@@ -35,7 +35,7 @@ public class MoteurRPN extends Interpreteur {
      * </ul>
      * @param arret Pour signaler l'arret du programme.
      */
-    public MoteurRPN(Arret arret){
+    public MoteurRPN(final Arret arret) {
         super(arret);
         operandes = new Stack<Double>();
         Commande affiche = new CommandeAfficheMoteur(this);
@@ -46,7 +46,7 @@ public class MoteurRPN extends Interpreteur {
      * Enregistre la nouvelle opérande dans la pile du MoteurRPN.
      * @param a nouvelle opérande
      */
-    public void enregistreOperande(double a) {
+    public void enregistreOperande(final double a) {
         operandes.push(a);
     }
 
@@ -56,7 +56,7 @@ public class MoteurRPN extends Interpreteur {
      * @throws OperandeAbsenteException Si la pile est vide.
      */
     public double retireOperande() throws OperandeAbsenteException {
-        if(operandes.isEmpty()) {
+        if (operandes.isEmpty()) {
             throw new OperandeAbsenteException();
         }
         return operandes.pop();
@@ -79,7 +79,9 @@ public class MoteurRPN extends Interpreteur {
      * @throws NoCommandException   Si la commande affiche n'existe pas.
      * @throws UndoImpossibleException  Si la commande undo échoue.
      */
-    public void executeAjoutOperande(double o) throws CommandeImpossibleException, NoCommandException, UndoImpossibleException {
+    public void executeAjoutOperande(final double o)
+            throws CommandeImpossibleException,
+            NoCommandException, UndoImpossibleException {
         Commande c = new CommandeAjoutOperande(this, o);
         super.execute(c);
         super.execute("affiche");
@@ -88,12 +90,14 @@ public class MoteurRPN extends Interpreteur {
     /**
      * Execute l'opération.
      * Action annulable donc ajouté aussi dans l'historique.
-     * @param o Opérande à ajouter
+     * @param ope Opérande à ajouter
      * @throws CommandeImpossibleException  Si la commande est impossible.
      * @throws NoCommandException   Si la commande affiche n'existe pas.
      * @throws UndoImpossibleException  Si la commande undo échoue.
      */
-    public void executeOperation(Operation ope) throws CommandeImpossibleException, NoCommandException, UndoImpossibleException {
+    public void executeOperation(final Operation ope)
+            throws CommandeImpossibleException,
+            NoCommandException, UndoImpossibleException {
         Commande c = new CommandeOperation(this, ope);
         super.execute(c);
         super.execute("affiche");
@@ -115,7 +119,7 @@ public class MoteurRPN extends Interpreteur {
      */
     public String afficheCommandes() {
         String s = super.afficheCommandes();
-        s = s.substring(0, s.length()-1);
+        s = s.substring(0, s.length() - 1);
         s = s.concat(",\n\t");
         String operateurs = Operation.afficheOperateurs();
         s = s.concat(operateurs.substring(1, operateurs.length() - 1));

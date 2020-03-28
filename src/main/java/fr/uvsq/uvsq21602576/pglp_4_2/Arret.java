@@ -12,7 +12,7 @@ public class Arret {
      * Est-ce que le programme doit s'arreter ?
      */
     private boolean arret;
-    
+
     /**
      * Constructeur.
      * Crée un arret à false.
@@ -20,14 +20,14 @@ public class Arret {
     public Arret() {
         arret = false;
     }
-    
+
     /**
      * Mets l'arret à true.
      */
     public void setArret() {
         arret = true;
     }
-    
+
     /**
      * Teste si l'arret est à true.
      * @return  true si le programme doit s'arreter,

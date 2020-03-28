@@ -32,7 +32,8 @@ public class CommandeUndoTest {
         Historique h = new Historique();
         CommandeUndoable c = new CommandeUndoable() {
             @Override
-            public void execute() throws CommandeImpossibleException, UndoImpossibleException {
+            public void execute() throws CommandeImpossibleException,
+            UndoImpossibleException {
             }
 
             @Override
@@ -54,7 +55,6 @@ public class CommandeUndoTest {
     /**
      * Teste l'execution.
      * En cas d'historique vide.
-     * @throws UndoImpossibleException  En cas d'undo impossible.
      */
     @Test
     public void executeExceptionTest() {
